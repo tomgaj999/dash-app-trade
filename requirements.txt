@@ -26,7 +26,7 @@ Flask-Compress==1.7.0
 Flask-SeaSurf==0.2.2
 future==0.18.2
 gunicorn==20.0.4
-idna==2.10
+idna==2.0.0
 importlib-metadata==2.2.0
 ipython==7.19.0
 ipython-genutils==0.2.0
