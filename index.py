@@ -5,7 +5,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 
 from functions.functions import *
-from app import app
+from app import app,server
 from pages import renko_macd
 
 
@@ -71,4 +71,4 @@ def render_page_content(pathname):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=False)
+    app.run_server(host='192.168.0.104',port='3000', debug=True)
