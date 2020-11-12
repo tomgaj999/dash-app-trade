@@ -28,7 +28,6 @@ future==0.18.2
 gunicorn==20.0.4
 idna==2.10
 importlib-metadata==2.0.0
-ipykernel==5.3.4
 ipython==7.19.0
 ipython-genutils==0.2.0
 itsdangerous==1.1.0
