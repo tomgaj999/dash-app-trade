@@ -21,9 +21,7 @@ app = dash.Dash(
     ],
     suppress_callback_exceptions=True
 )
-# auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
+auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 
-# app.logger.addHandler(logging.StreamHandler(sys.stdout))
-# app.logger.setLevel(logging.ERROR)
 
 server = app.server
