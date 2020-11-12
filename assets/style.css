@@ -1,0 +1,30 @@
+/* Szerokość contentu i nawigacji - tak zeby dobrze było widac też na telefonie */
+
+#page-content,#nav{
+    padding-right: 0; 
+    padding-left: 0; 
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1%;
+}
+
+/* Rozsuniecie walut w nawigacji */
+#page-1-link, #page-2-link, #page-3-link{
+  margin-left: 15px;
+}
+
+/* Wyśrodkowanie tekstu w tabelkach */
+.col{
+  text-align: center;
+}
+
+
+/* Poniżej tej rozdzielczości taki rozmiar czcionki */
+@media (max-width: 600px) {
+  body{font-size: 10px;}
+}
+
+/* Wysokość listy w formularzu - tam gdzie wybierasz strategie */
+/* .Select-control,.Select-multi-value-wrapper{
+  height: 4px !important;
+} */
