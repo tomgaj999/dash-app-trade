@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 
 FA = "https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 USERNAME_PASSWORD_PAIRS = [
-    ['tomgaj999@gmail.com','Audik2012!'],['username','password']
+    ['tomek','tomek'],['username','password']
 ]
 
 app = dash.Dash(
