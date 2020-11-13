@@ -71,7 +71,7 @@ def renko_DF(DF):
     df = df.iloc[:,[0,1,2,3,4]]
     df.columns = ["date","open","close","high","low"]
     df2 = Renko(df)
-    df2.brick_size = round(ATR(DF,120)["ATR"][-1],4)
+    df2.brick_size = round(ATR(DF,60)["ATR"][-1],4)
     renko_df = df2.get_ohlc_data()
     renko_df["bar_num"] = np.where(renko_df["uptrend"]==True,1,np.where(renko_df["uptrend"]==False,-1,0))
     for i in range(1,len(renko_df["bar_num"])):
