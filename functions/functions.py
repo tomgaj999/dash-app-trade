@@ -1,9 +1,11 @@
 import dash_html_components as html
+import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 import dash_table 
 import pandas as pd
 from stocktrends import Renko
 import numpy as np
+import math
 
 
 # Returns Balance,Equity etc for app layout
@@ -23,6 +25,29 @@ def get_top_bar(balance=50000, equity=50000, day_pl=0.7, gross_pl=5, margin=0, u
 # Return Open/Close Positions
 def get_bottom_bar(df):
     return dbc.Table.from_dataframe(df, size='sm', striped=True, bordered=False, hover=True,dark=False)
+
+def card(label):
+    return dbc.Card(
+    [
+        dbc.FormGroup(
+            [
+                dbc.Label(label),
+                dcc.Dropdown(
+                    id="x-variable",
+                    options=[
+                        {"label": 'RenkoOBV', "value": 'RenkoOBV'}
+                    ],
+                    value="Date",
+                ),
+            ]
+        ),
+    ],
+    body=True,
+    style={'padding-bottom':0,'padding-top':0, }
+)
+
+
+
 
 def MACD(DF,a,b,c):
     """function to calculate MACD
@@ -47,6 +72,7 @@ def ATR(DF,n):
     df['ATR'] = df['TR'].rolling(n).mean()
     #df['ATR'] = df['TR'].ewm(span=n,adjust=False,min_periods=n).mean()
     df2 = df.drop(['H-L','H-PC','L-PC'],axis=1)
+    
     return df2
 
 def slope(ser,n):
@@ -70,8 +96,15 @@ def renko_DF(DF):
     df.reset_index(inplace=True)
     df = df.iloc[:,[0,1,2,3,4]]
     df.columns = ["date","open","close","high","low"]
+    
     df2 = Renko(df)
-    df2.brick_size = round(ATR(DF,60)["ATR"][-1],4)
+    n = 120
+    size=round(ATR(DF,n)["ATR"].iloc[-1],4)
+    
+    while math.isnan(round(ATR(DF,n)["ATR"].iloc[-1],4)):
+        n=-10
+        size = round(ATR(DF,n)["ATR"].iloc[-1],4)
+    df2.brick_size = size
     renko_df = df2.get_ohlc_data()
     renko_df["bar_num"] = np.where(renko_df["uptrend"]==True,1,np.where(renko_df["uptrend"]==False,-1,0))
     for i in range(1,len(renko_df["bar_num"])):

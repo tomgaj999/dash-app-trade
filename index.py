@@ -12,15 +12,26 @@ from pages import renko_macd
 
 
 
-
 navbar = dbc.NavbarSimple(
     children=[
         dbc.Nav(
         [
-        dbc.NavItem(dbc.NavLink("ALL", href="/page-1",id='page-1-link')),
-        dbc.NavItem(dbc.NavLink("EUR/PLN", href="/page-2",id='page-2-link')),
-        dbc.NavItem(dbc.NavLink("EUR/CHF", href="/page-3",id='page-3-link')),
-        dbc.NavItem(dbc.NavLink("EUR/USD", href="/page-4",id='page-4-link')),
+        dbc.DropdownMenu(
+            [
+            dbc.DropdownMenuItem("EUR/USD", href="/page-1",id='page-1-link'),
+            dbc.DropdownMenuItem("EUR/PLN", href="/page-2",id='page-2-link'),
+            dbc.DropdownMenuItem("USD/JPY", href="/page-3",id='page-3-link'),
+            ],
+            label="Forex",
+        ),
+        dbc.DropdownMenu(
+            [
+            dbc.DropdownMenuItem("Nothing", href="/page-2",id='page-4-link'),
+            # dbc.DropdownMenuItem("EUR/PLN", href="/page-3",id='page-5-link'),
+            # dbc.DropdownMenuItem("USD/JPY", href="/page-3",id='page-6-link'),
+            ],
+            label="Crypto",
+        )
         ],
     pills=True,
     # vertical='lg'
@@ -34,19 +45,18 @@ navbar = dbc.NavbarSimple(
     
 )
 
-#content = html.Div(id="page-content")
 
 app.layout = html.Div([dcc.Location(id="url"), navbar, dbc.Container(id='page-content')])
 
 @app.callback(
-    [Output(f"page-{i}-link", "active") for i in range(1, 5)],
+    [Output(f"page-{i}-link", "active") for i in range(1, 4)],
     [Input("url", "pathname")],
 )
 def toggle_active_links(pathname):
     if pathname == "/":
         # Treat page 1 as the homepage / index
         return True, False, False
-    return [pathname == f"/page-{i}" for i in range(1, 5)]
+    return [pathname == f"/page-{i}" for i in range(1, 4)]
 
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def render_page_content(pathname):
@@ -71,4 +81,4 @@ def render_page_content(pathname):
 
 
 if __name__ == "__main__":
-    app.run_server(host='192.168.0.104',port='3000', debug=True)
+    app.run_server(debug=False)
