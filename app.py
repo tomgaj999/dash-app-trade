@@ -12,7 +12,7 @@ USERNAME_PASSWORD_PAIRS = [
     ['tomek','tomek'],['username','password']
 ]
 
-app = dash.Dash(
+app = dash.Dash(__name__,
     external_stylesheets=[dbc.themes.BOOTSTRAP, FA],
     # these meta_tags ensure content is scaled correctly on different devices
     # see: https://www.w3schools.com/css/css_rwd_viewport.asp for more
