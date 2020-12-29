@@ -1,2 +1,2 @@
 # Trading APP
-Main goal is to verify permormance of implemented strategies.
+Main goal is to verify performance of implemented strategies - BinaryOptions and CFD.
