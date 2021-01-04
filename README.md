@@ -3,4 +3,4 @@ Main goal is to verify performance of implemented scalping strategies. Target - 
 
 Sample visualization: 
 
-![](test_gif.gif)
+![](test_gif2.gif)
